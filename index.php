@@ -10,7 +10,7 @@
 echo '<pre>';
 $time_start = microtime(TRUE);
 echo 'Time has started' . PHP_EOL;
-$array = [4, 40, 5, 6, 12, 3, 7, 8, 15, 20, 11];
+$array = [1,5,7,3];
 shuffle($array);
 echo 'Array was created and mixed' . PHP_EOL;
 timePass($time_start);
@@ -28,16 +28,14 @@ timePass($time_start);
  */
 function calc(array $array) {
   print_r($array);
-  $firstBiggest = 0;
+  $firstBiggest = $array[0];
+  $count = count($array);
   $secondBiggest = 0;
   $max = 0;
-  foreach ($array as $key => $value) {
+  for ($x=1 ; $x<$count; ++$x) {
+    $value = $array[$x];
     echo '--------v:' . $value . PHP_EOL;
-    if ($key == 0) {
-      echo 'First value:' . $value . PHP_EOL;
-      $firstBiggest = $value;
-      continue;
-    }
+
     if ($value > $firstBiggest) {
       $secondBiggest = $firstBiggest;
       $firstBiggest = $value;
