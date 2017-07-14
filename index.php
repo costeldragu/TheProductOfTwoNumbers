@@ -16,7 +16,7 @@ echo 'Array was created and mixed' . PHP_EOL;
 timePass($time_start);
 $time_start = microtime(TRUE);
 echo 'Start calculating' . PHP_EOL;
-echo 'Response:' . calc($array) . PHP_EOL;
+echo 'Response:' . calc($array, 5) . PHP_EOL;
 echo 'Array was calculated' . PHP_EOL;
 timePass($time_start);
 
@@ -63,10 +63,11 @@ function calcOld(array $array) {
 
 /**
  * @param array $array
+ * @param int $modulo
  *
  * @return int|mixed
  */
-function calc(array $array) {
+function calc(array $array, $modulo  = 3) {
   print_r($array);
   $firstBiggest = 0;
   $count = count($array);
@@ -74,9 +75,9 @@ function calc(array $array) {
   for ($x = 0; $x < $count; ++$x) {
     $value = $array[$x];
     echo '--------v:' . $value . PHP_EOL;
-    if($value % 3 == 0 && $firstBiggest < $value) {
+    if($value % $modulo == 0 && $firstBiggest < $value) {
       $firstBiggest = $value;
-      echo 'First has change $firstBiggest:' . $firstBiggest . PHP_EOL;;
+      echo 'First has change $firstBiggest:' . $firstBiggest . PHP_EOL;
     }
     if ($value > $secondBiggest) {
       $secondBiggest = $value;
