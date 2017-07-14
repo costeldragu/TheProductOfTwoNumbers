@@ -79,7 +79,7 @@ function calc(array $array, $modulo  = 3) {
       $firstBiggest = $value;
       echo 'First has change $firstBiggest:' . $firstBiggest . PHP_EOL;
     }
-    if ($value > $secondBiggest) {
+    if ($value > $secondBiggest && $value != $firstBiggest) {
       $secondBiggest = $value;
       echo 'Second value $secondBiggest:' . $value . PHP_EOL;
     }
