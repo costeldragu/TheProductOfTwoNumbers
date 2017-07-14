@@ -10,7 +10,7 @@
 echo '<pre>';
 $time_start = microtime(TRUE);
 echo 'Time has started' . PHP_EOL;
-$array = [1,5,7,3];
+$array = range(0,100);
 shuffle($array);
 echo 'Array was created and mixed' . PHP_EOL;
 timePass($time_start);
@@ -25,14 +25,15 @@ timePass($time_start);
  * @param array $array
  *
  * @return int|mixed
+ * TODO - Bad approach
  */
-function calc(array $array) {
+function calcOld(array $array) {
   print_r($array);
   $firstBiggest = $array[0];
   $count = count($array);
   $secondBiggest = 0;
   $max = 0;
-  for ($x=1 ; $x<$count; ++$x) {
+  for ($x = 1; $x < $count; ++$x) {
     $value = $array[$x];
     echo '--------v:' . $value . PHP_EOL;
 
@@ -58,6 +59,31 @@ function calc(array $array) {
 
   }
   return $max;
+}
+
+/**
+ * @param array $array
+ *
+ * @return int|mixed
+ */
+function calc(array $array) {
+  print_r($array);
+  $firstBiggest = 0;
+  $count = count($array);
+  $secondBiggest = 0;
+  for ($x = 0; $x < $count; ++$x) {
+    $value = $array[$x];
+    echo '--------v:' . $value . PHP_EOL;
+    if($value % 3 == 0 && $firstBiggest < $value) {
+      $firstBiggest = $value;
+      echo 'First has change $firstBiggest:' . $firstBiggest . PHP_EOL;;
+    }
+    if ($value > $secondBiggest) {
+      $secondBiggest = $value;
+      echo 'Second value $secondBiggest:' . $value . PHP_EOL;
+    }
+  }
+  return $firstBiggest * $secondBiggest;
 }
 
 
